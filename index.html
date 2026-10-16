@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="google-site-verification" content="c7RiUJg2Pj9gL1Ees-zYaXYqJeb_TtlnwwPXP0o3eUA" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Regional Naíza | Manaus - AM</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F5F2EB',
+                        creamDark: '#EAE5D9',
+                        forest: '#1E3A2F',
+                        forestDark: '#14271F',
+                        terracotta: '#A35C3A',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-cream text-forest font-sans antialiased selection:bg-terracotta selection:text-white pb-24">
+
+    <!-- Barra Superior -->
+    <div class="bg-forest text-cream text-[11px] font-medium tracking-wider text-center py-2 px-4 uppercase">
+        Um pedacinho do norte na sua manhã <span class="text-terracotta mx-1">✦</span> Feito com carinho em Manaus
+    </div>
+
+    <!-- Header / Navbar Principal -->
+    <header class="sticky top-0 bg-cream/95 backdrop-blur-md z-40 border-b border-creamDark">
+        <div class="max-w-xl mx-auto px-4 py-3.5 flex justify-between items-center">
+            <button onclick="switchTab('inicio')" class="flex items-center gap-3 text-left">
+                <div class="w-10 h-10 rounded-full bg-forest text-cream flex items-center justify-center font-serif font-bold text-lg shadow-sm">
+                    N.
+                </div>
+                <div>
+                    <h1 class="font-serif font-bold text-base leading-tight tracking-tight text-forest">Café Regional</h1>
+                    <p class="text-[10px] tracking-widest uppercase text-forest/70 font-semibold">Naíza · Manaus</p>
+                </div>
+            </button>
+            
+            <div class="flex items-center gap-2">
+                <button onclick="switchTab('carrinho')" class="flex items-center gap-2 bg-white border border-creamDark hover:border-forest/30 px-3.5 py-2 rounded-xl text-xs font-semibold text-forest shadow-sm transition">
+                    <i class="fa-solid fa-bag-shopping text-terracotta"></i> Meu pedido 
+                    <span id="header-badge" class="bg-terracotta text-white rounded-full w-4 h-4 text-[10px] flex items-center justify-center hidden">0</span>
+                </button>
+                <button onclick="toggleMenu()" class="w-10 h-10 bg-white border border-creamDark rounded-xl flex items-center justify-center text-forest shadow-sm hover:border-forest/30">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navegação por Abas Horizontal -->
+        <nav class="max-w-xl mx-auto px-4 flex gap-1 border-t border-creamDark overflow-x-auto scrollbar-none text-xs font-serif">
+            <button onclick="switchTab('inicio')" id="nav-inicio" class="nav-tab active-tab py-3 px-3 border-b-2 border-forest font-bold text-forest whitespace-nowrap">Início</button>
+            <button onclick="switchTab('cardapio')" id="nav-cardapio" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap">Cardápio</button>
+            <button onclick="switchTab('sobre')" id="nav-sobre" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap">Nossa História</button>
+            <button onclick="switchTab('local')" id="nav-local" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap">Como Chegar</button>
+            <button onclick="switchTab('carrinho')" id="nav-carrinho" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap">Sacola / Pedido</button>
+        </nav>
+    </header>
+
+    <!-- Menu Drawer Mobile -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity">
+        <div class="absolute right-0 top-0 bottom-0 w-72 bg-cream p-6 flex flex-col justify-between shadow-2xl">
+            <div>
+                <div class="flex justify-between items-center mb-8">
+                    <span class="font-serif font-bold text-lg text-forest">Navegação</span>
+                    <button onclick="toggleMenu()" class="text-forest text-xl font-bold">&times;</button>
+                </div>
+                <nav class="space-y-4 font-serif text-lg">
+                    <button onclick="switchTab('inicio'); toggleMenu();" class="block text-left w-full text-forest hover:text-terracotta transition">Início</button>
+                    <button onclick="switchTab('cardapio'); toggleMenu();" class="block text-left w-full text-forest hover:text-terracotta transition">Cardápio</button>
+                    <button onclick="switchTab('sobre'); toggleMenu();" class="block text-left w-full text-forest hover:text-terracotta transition">Nossa história</button>
+                    <button onclick="switchTab('local'); toggleMenu();" class="block text-left w-full text-forest hover:text-terracotta transition">Como chegar</button>
+                    <button onclick="switchTab('carrinho'); toggleMenu();" class="block text-left w-full text-terracotta font-bold transition">Meu pedido / Sacola</button>
+                </nav>
+            </div>
+            <div class="text-xs text-forest/60 border-t border-creamDark pt-4">
+                Café Regional Naíza · Manaus, AM
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO DAS ABAS -->
+    <main class="max-w-xl mx-auto px-4 py-6">
+
+        <!-- ABA 1: INÍCIO -->
+        <section id="tab-inicio" class="tab-content">
+            <div class="mb-4">
+                <span class="text-xs uppercase tracking-widest text-terracotta font-semibold flex items-center gap-1.5">
+                    Bom dia, Manaus ☀️
+                </span>
+            </div>
+            <h2 class="font-serif text-4xl font-bold leading-tight mb-4 text-forest">
+                O sabor da nossa <span class="text-terracotta font-normal italic">terra, todo dia.</span>
+            </h2>
+            <p class="text-forest/80 text-sm leading-relaxed mb-6">
+                Café passado na hora, tucumã fresquinho e aquele bom dia que chega com abraço.
+            </p>
+            <div class="flex flex-wrap items-center gap-4 mb-8">
+                <button onclick="switchTab('cardapio')" class="bg-forest hover:bg-forestDark text-cream font-medium px-6 py-3.5 rounded-xl text-sm shadow-md transition flex items-center gap-2">
+                    Conheça o cardápio <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+                <span class="text-xs text-forest/60">Um café da manhã com sabor de casa</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-forest/70 mb-8">
+                <span class="w-2 h-2 rounded-full bg-terracotta inline-block"></span>
+                <span>Horário a confirmar</span> · <span>Manaus, AM</span>
+            </div>
+
+            <!-- Imagem Arco -->
+            <div class="relative rounded-t-[180px] overflow-hidden bg-creamDark shadow-md border-b-4 border-forest mb-8">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80" alt="X-Caboquinho" class="w-full h-72 object-cover">
+                <div class="absolute bottom-4 right-4 bg-terracotta text-white rounded-full w-20 h-20 flex flex-col items-center justify-center text-[10px] font-bold tracking-widest uppercase shadow-lg border-2 border-cream rotate-12">
+                    <span>Do</span>
+                    <span class="text-sm">Norte</span>
+                    <span>com amor</span>
+                </div>
+            </div>
+
+            <!-- Chamada rápida -->
+            <div class="bg-forest text-cream p-6 rounded-2xl">
+                <span class="text-xs uppercase tracking-widest text-terracotta font-semibold block mb-1">O clássico da casa</span>
+                <h3 class="font-serif text-2xl font-bold mb-2">Da nossa cozinha pra sua mesa.</h3>
+                <p class="text-xs text-cream/80 mb-4">Ingredientes da região, preparo feito na hora e o prazer simples de começar bem o dia.</p>
+                <button onclick="switchTab('cardapio')" class="text-xs font-semibold text-terracotta hover:underline">Explore os sabores →</button>
+            </div>
+        </section>
+
+        <!-- ABA 2: CARDÁPIO -->
+        <section id="tab-cardapio" class="tab-content hidden">
+            <div class="mb-6">
+                <span class="text-xs uppercase tracking-widest text-terracotta font-semibold block mb-1">Cardápio da Casa · Manaus, AM</span>
+                <h2 class="font-serif text-3xl font-bold text-forest mb-2">Escolha seu começo.</h2>
+                <p class="text-xs text-forest/70">Tapioca na chapa, café passado na hora e sabores que têm a cara da nossa terra.</p>
+            </div>
+
+            <!-- Busca & Filtros -->
+            <div class="mb-6 space-y-4">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-forest/40">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </span>
+                    <input type="text" id="search-input" oninput="filterProducts()" placeholder="Buscar um sabor..." class="w-full pl-10 pr-4 py-3 bg-white border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta transition shadow-sm">
+                </div>
+
+                <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+                    <button onclick="filterCategory('todos', event)" class="cat-filter active-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-forest text-cream shadow-sm transition">Todos os sabores</button>
+                    <button onclick="filterCategory('tapiocas', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">01 Tapiocas Tradicionais</button>
+                    <button onclick="filterCategory('sanduiches', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">02 Sanduíches Regionais</button>
+                    <button onclick="filterCategory('bebidas', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">03 Bebidas & Sucos</button>
+                </div>
+            </div>
+
+            <!-- Aviso -->
+            <div class="bg-white border border-creamDark p-4 rounded-xl flex items-start gap-3 mb-6 shadow-sm">
+                <div class="text-terracotta text-base mt-0.5">
+                    <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <div class="text-xs text-forest/80 leading-relaxed">
+                    <strong class="font-bold text-forest block mb-0.5">Valores confirmados</strong>
+                    Outros itens estão sem preço publicado: o valor será confirmado com você pelo WhatsApp, antes de concluir.
+                </div>
+            </div>
+
+            <!-- Lista de Produtos -->
+            <div id="product-grid" class="space-y-4">
+                <!-- JS Injeta os Cards -->
+            </div>
+        </section>
+
+        <!-- ABA 3: NOSSA HISTÓRIA -->
+        <section id="tab-sobre" class="tab-content hidden space-y-6">
+            <div>
+                <span class="text-xs uppercase tracking-widest text-terracotta font-semibold block mb-2">Um pouco sobre nós</span>
+                <h2 class="font-serif text-3xl font-bold mb-4 text-forest">
+                    Tem sabor que <span class="text-terracotta font-normal italic">faz a gente ficar.</span>
+                </h2>
+                <p class="text-forest/80 text-sm leading-relaxed mb-4">
+                    Na Naíza, a mesa é um convite para aproveitar os sabores regionais e a companhia. Sem pressa, com café quentinho e conversa boa.
+                </p>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden shadow-md bg-creamDark border border-creamDark">
+                <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=600&q=80" alt="Preparo Artesanal" class="w-full h-64 object-cover">
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-creamDark shadow-sm">
+                <h3 class="font-serif font-bold text-lg text-forest mb-2">Tradição & Ingredientes Locais</h3>
+                <p class="text-xs text-forest/70 leading-relaxed">
+                    Trabalhamos com tucumã selecionado diariamente, queijo coalho de qualidade e massa de tapioca fina e crocante na chapa.
+                </p>
+            </div>
+        </section>
+
+        <!-- ABA 4: COMO CHEGAR -->
+        <section id="tab-local" class="tab-content hidden">
+            <span class="text-xs uppercase tracking-widest text-terracotta font-semibold block mb-2">Onde estamos</span>
+            <h2 class="font-serif text-3xl font-bold mb-6 text-forest">Café Regional Naíza</h2>
+            
+            <div class="space-y-4 mb-6">
+                <div class="bg-white p-4 rounded-xl border border-creamDark flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-cream flex items-center justify-center text-terracotta">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-serif font-bold text-sm text-forest">Manaus, Amazonas</h4>
+                        <p class="text-xs text-forest/70">Endereço de rua ainda precisa ser confirmado.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-creamDark flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-cream flex items-center justify-center text-terracotta">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-serif font-bold text-sm text-forest">Horário a confirmar</h4>
+                        <p class="text-xs text-forest/70">Fale com a gente para confirmar antes de vir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3 mb-8">
+                <a href="https://maps.google.com/?q=Manaus" target="_blank" class="bg-forest hover:bg-forestDark text-cream font-medium px-5 py-3 rounded-xl text-xs shadow transition flex items-center gap-2">
+                    <i class="fa-solid fa-location-arrow"></i> Buscar no Google Maps <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+                <a href="https://wa.me/5592999999999" target="_blank" class="bg-transparent border border-forest/30 text-forest hover:bg-forest/5 font-medium px-5 py-3 rounded-xl text-xs transition flex items-center gap-2">
+                    Chamar no WhatsApp <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+            </div>
+
+            <!-- Mapa Visual -->
+            <div class="bg-creamDark rounded-2xl overflow-hidden border border-creamDark h-56 relative flex items-center justify-center shadow-inner">
+                <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#1E3A2F_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="relative text-center">
+                    <div class="w-8 h-8 bg-terracotta text-white rounded-full flex items-center justify-center mx-auto shadow-lg mb-2">
+                        <i class="fa-solid fa-location-dot text-sm"></i>
+                    </div>
+                    <div class="bg-white px-4 py-2 rounded-xl shadow border border-creamDark text-left">
+                        <span class="text-[10px] uppercase font-bold text-terracotta block">Busca no mapa</span>
+                        <h5 class="font-serif font-bold text-xs text-forest">Café Regional Naíza</h5>
+                        <p class="text-[10px] text-forest/60">Manaus, AM · endereço a confirmar</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 5: SACOLA / PEDIDO -->
+        <section id="tab-carrinho" class="tab-content hidden">
+            <div class="mb-6">
+                <span class="text-[10px] uppercase tracking-widest text-terracotta font-semibold block mb-1">Seu pedido · Feito com carinho</span>
+                <h2 class="font-serif text-3xl font-bold text-forest mb-2">Só falta combinar.</h2>
+                <p class="text-xs text-forest/70">Revise os sabores, conte como prefere receber e a gente confirma tudo pelo WhatsApp.</p>
+            </div>
+
+            <!-- Seção Sacola -->
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs uppercase tracking-widest text-forest/60 font-semibold">01 · Sua escolha</span>
+                    <button onclick="switchTab('cardapio')" class="text-xs font-semibold text-terracotta hover:underline">Adicionar mais <i class="fa-solid fa-plus text-[10px]"></i></button>
+                </div>
+
+                <h3 class="font-serif text-2xl font-bold text-forest mb-3">Na sacola (<span id="cart-item-count">0</span>)</h3>
+
+                <div id="cart-items-container" class="space-y-3 mb-4">
+                    <!-- JS preenche itens ou sacola vazia -->
+                </div>
+            </div>
+
+            <!-- Observações Gerais -->
+            <div class="mb-6">
+                <label class="block text-xs uppercase tracking-widest text-forest/60 font-semibold mb-2">Observações gerais <span class="text-forest/40 lowercase">opcional</span></label>
+                <textarea id="general-obs" placeholder="Algum detalhe que devemos saber?" rows="3" class="w-full p-3 bg-white border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta transition shadow-sm resize-none"></textarea>
+            </div>
+
+            <!-- Form WhatsApp -->
+            <div class="bg-white p-5 rounded-2xl border border-creamDark space-y-4 mb-6 shadow-sm">
+                <h4 class="font-serif font-bold text-sm text-forest uppercase tracking-wider">Dados para o WhatsApp</h4>
+                
+                <div>
+                    <label class="block text-xs font-semibold text-forest mb-1">Seu Nome *</label>
+                    <input type="text" id="client-name" placeholder="Ex: João Silva" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-forest mb-1">Opção de Consumo *</label>
+                    <select id="consumption-type" onchange="toggleCartFields()" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
+                        <option value="Delivery">Delivery (Entrega em casa)</option>
+                        <option value="Retirada no Local">Retirada no Local</option>
+                        <option value="Na Mesa">Na Mesa</option>
+                    </select>
+                </div>
+
+                <div id="field-address">
+                    <label class="block text-xs font-semibold text-forest mb-1">Endereço Completo (com Bairro) *</label>
+                    <input type="text" id="client-address" placeholder="Ex: Rua Leopoldina, 123 - Adrianópolis" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
+                </div>
+
+                <div id="field-table" class="hidden">
+                    <label class="block text-xs font-semibold text-forest mb-1">Número da Mesa *</label>
+                    <input type="number" id="client-table" placeholder="Ex: 05" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-forest mb-1">Forma de Pagamento *</label>
+                    <select id="payment-method" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
+                        <option value="Pix">Pix</option>
+                        <option value="Cartão de Crédito/Débito">Cartão de Crédito / Débito</option>
+                        <option value="Dinheiro">Dinheiro (Levar troco)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="sendWhatsAppOrder()" class="w-full bg-forest hover:bg-forestDark text-cream font-medium py-4 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 transition text-sm">
+                <i class="fa-brands fa-whatsapp text-lg text-terracotta"></i> Enviar Pedido via WhatsApp
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Rodapé Fixo -->
+    <footer class="bg-forest text-cream pt-8 pb-8 px-4 border-t border-forestDark mt-12">
+        <div class="max-w-xl mx-auto text-center">
+            <div class="w-8 h-8 rounded-full bg-terracotta text-white flex items-center justify-center font-serif font-bold text-sm mx-auto mb-2">
+                N.
+            </div>
+            <p class="font-serif italic text-xs text-cream/80 mb-1">Com tucumã e carinho, de Manaus pra você.</p>
+            <p class="text-[10px] text-cream/60">© Café Regional Naíza · Manaus, AM</p>
+        </div>
+    </footer>
+
+    <!-- Lógica JavaScript -->
+    <script>
+        // Cardápio sem opções de tamanhos
+        const products = [
+            {
+                id: 1,
+                name: "Tapioca com Manteiga",
+                description: "Tapioca tradicional feita na chapa, na hora.",
+                price: 15.00,
+                category: "tapiocas",
+                image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=400&q=80"
+            },
+            {
+                id: 2,
+                name: "Tapioca de Castanha",
+                description: "Tapioca crocante com recheio especial de castanha.",
+                price: 34.00,
+                category: "tapiocas",
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80"
+            },
+            {
+                id: 3,
+                name: "Tapioca com Ovos",
+                description: "Tapioca na chapa com ovos caipiras bem temperados.",
+                price: 24.00,
+                category: "tapiocas",
+                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80"
+            },
+            {
+                id: 4,
+                name: "X-Caboquinho Tradicional",
+                description: "Pão francês, tucumã fresquinho, queijo coalho e banana frita.",
+                price: 14.00,
+                category: "sanduiches",
+                image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80"
+            },
+            {
+                id: 5,
+                name: "Sanduíche de Tucumã com Mortadela",
+                description: "Pão francês, tucumã e fatias de mortadela.",
+                price: 10.00,
+                category: "sanduiches",
+                image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&q=80"
+            },
+            {
+                id: 6,
+                name: "Café com Leite Regional",
+                description: "Café coado na hora com leite quente.",
+                price: 5.00,
+                category: "bebidas",
+                image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&q=80"
+            },
+            {
+                id: 7,
+                name: "Suco de Cupuaçu",
+                description: "Polpa natural de fruta regional batida na hora.",
+                price: 8.00,
+                category: "bebidas",
+                image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=400&q=80"
+            }
+        ];
+
+        let cart = [];
+        let activeCategory = 'todos';
+
+        // Sistema de Troca de Abas
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('border-forest', 'font-bold', 'text-forest');
+                btn.classList.add('border-transparent', 'text-forest/70');
+            });
+
+            const selectedTab = document.getElementById(`tab-${tabId}`);
+            const selectedNav = document.getElementById(`nav-${tabId}`);
+
+            if (selectedTab) selectedTab.classList.remove('hidden');
+            if (selectedNav) {
+                selectedNav.classList.remove('border-transparent', 'text-forest/70');
+                selectedNav.classList.add('border-forest', 'font-bold', 'text-forest');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (tabId === 'carrinho') {
+                renderCartItems();
+            }
+        }
+
+        // Renderizar Produtos no Cardápio
+        function renderProducts(filterText = '') {
+            const container = document.getElementById('product-grid');
+            if (!container) return;
+            container.innerHTML = '';
+
+            let filtered = products.filter(p => {
+                const matchesCat = activeCategory === 'todos' || p.category === activeCategory;
+                const matchesSearch = p.name.toLowerCase().includes(filterText.toLowerCase()) || p.description.toLowerCase().includes(filterText.toLowerCase());
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<p class="text-xs text-forest/60 text-center py-8">Nenhum sabor encontrado.</p>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl overflow-hidden border border-creamDark shadow-sm flex flex-col sm:flex-row';
+                
+                card.innerHTML = `
+                    <img src="${p.image}" alt="${p.name}" class="w-full sm:w-36 h-36 object-cover">
+                    <div class="p-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-serif font-bold text-base text-forest mb-0.5">${p.name}</h4>
+                            <p class="text-xs text-terracotta font-bold mb-1">R$ ${p.price.toFixed(2).replace('.', ',')}</p>
+                            <p class="text-xs text-forest/70 mb-3">${p.description}</p>
+                        </div>
+                        <div class="pt-2 border-t border-creamDark flex justify-between items-center">
+                            <span class="text-[11px] text-forest/50">Serve 1 pessoa</span>
+                            <button onclick="addToCart(${p.id})" class="bg-forest hover:bg-forestDark text-cream text-xs font-semibold px-4 py-2 rounded-xl shadow transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus text-[10px]"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat, event) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-filter').forEach(btn => {
+                btn.classList.remove('bg-forest', 'text-cream');
+                btn.classList.add('bg-white', 'text-forest');
+            });
+            event.target.classList.remove('bg-white', 'text-forest');
+            event.target.classList.add('bg-forest', 'text-cream');
+            renderProducts(document.getElementById('search-input').value);
+        }
+
+        function filterProducts() {
+            renderProducts(document.getElementById('search-input').value);
+        }
+
+        // Funções da Sacola
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartBadge();
+        }
+
+        function updateCartBadge() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const badge = document.getElementById('header-badge');
+            badge.textContent = totalItems;
+            if (totalItems > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function changeCartQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                }
+            }
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const countEl = document.getElementById('cart-item-count');
+            if (!container) return;
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countEl.textContent = totalItems;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white p-6 rounded-2xl border border-creamDark text-center">
+                        <div class="w-12 h-12 bg-cream rounded-full flex items-center justify-center mx-auto text-terracotta mb-3">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-forest text-base mb-1">A sacola está esperando.</h4>
+                        <p class="text-xs text-forest/70 mb-4">Escolha uma tapioca, um café ou outro sabor regional pra começar.</p>
+                        <button onclick="switchTab('cardapio')" class="bg-forest text-cream font-medium px-5 py-2.5 rounded-xl text-xs shadow hover:bg-forestDark transition">
+                            Ver cardápio →
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '';
+            cart.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'bg-white p-3.5 rounded-xl border border-creamDark flex justify-between items-center';
+                div.innerHTML = `
+                    <div>
+                        <h5 class="font-serif font-bold text-xs text-forest">${item.name}</h5>
+                        <p class="text-xs font-bold text-terracotta mt-0.5">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-cream p-1 rounded-lg border border-creamDark">
+                        <button onclick="changeCartQty(${item.id}, -1)" class="w-6 h-6 bg-white rounded text-xs font-bold shadow-sm">-</button>
+                        <span class="text-xs font-bold w-4 text-center">${item.quantity}</span>
+                        <button onclick="changeCartQty(${item.id}, 1)" class="w-6 h-6 bg-forest text-cream rounded text-xs font-bold shadow-sm">+</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function toggleCartFields() {
+            const type = document.getElementById('consumption-type').value;
+            const addressField = document.getElementById('field-address');
+            const tableField = document.getElementById('field-table');
+
+            if (type === 'Na Mesa') {
+                addressField.classList.add('hidden');
+                tableField.classList.remove('hidden');
+            } else if (type === 'Retirada no Local') {
+                addressField.classList.add('hidden');
+                tableField.classList.add('hidden');
+            } else {
+                addressField.classList.remove('hidden');
+                tableField.classList.add('hidden');
+            }
+        }
+
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) {
+                alert('Sua sacola está vazia. Adicione itens do cardápio antes de enviar.');
+                return;
+            }
+
+            const name = document.getElementById('client-name').value.trim();
+            const consumption = document.getElementById('consumption-type').value;
+            const address = document.getElementById('client-address').value.trim();
+            const table = document.getElementById('client-table').value.trim();
+            const payment = document.getElementById('payment-method').value;
+            const obs = document.getElementById('general-obs').value.trim();
+
+            if (!name) {
+                alert('Por favor, informe seu nome.');
+                document.getElementById('client-name').focus();
+                return;
+            }
+
+            if (consumption === 'Delivery' && !address) {
+                alert('Por favor, informe o endereço de entrega.');
+                document.getElementById('client-address').focus();
+                return;
+            }
+
+            if (consumption === 'Na Mesa' && !table) {
+                alert('Por favor, informe o número da mesa.');
+                document.getElementById('client-table').focus();
+                return;
+            }
+
+            let itemsText = cart.map(i => `• ${i.quantity}x ${i.name}`).join('\n');
+            
+            let locationInfo = '';
+            if (consumption === 'Delivery') locationInfo = `- Endereço: ${address}`;
+            else if (consumption === 'Na Mesa') locationInfo = `- Mesa: ${table}`;
+            else locationInfo = `- Tipo: Retirada no Local`;
+
+            let message = `Olá, gostaria de fazer um pedido no Café Regional Naíza! ☕🫓\n\n` +
+                          `📋 *ITENS DO PEDIDO:*\n${itemsText}\n\n`;
+
+            if (obs) {
+                message += `💬 *Observações:* ${obs}\n\n`;
+            }
+
+            message += `📍 *DADOS DE ENTREGA / CONSUMO:*\n` +
+                       `- Cliente: ${name}\n` +
+                       `- Tipo: ${consumption}\n` +
+                       `${locationInfo}\n` +
+                       `- Forma de Pagamento: ${payment}\n\n` +
+                       `Aguardando a confirmação do valor total e do tempo estimado. Obrigado!`;
+
+            const phone = "5592994345070";
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        window.onload = () => {
+            renderProducts();
+        };
+    </script>
+</body>
+</html>
+
