@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta name="google-site-verification" content="c7RiUJg2Pj9gL1Ees-zYaXYqJeb_TtlnwwPXP0o3eUA" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Café Regional Naíza | Manaus - AM</title>
@@ -30,18 +29,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100vw;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color: #F5F2EB;
+            color: #1E3A2F;
+        }
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tab-content {
+            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
 </head>
-<body class="bg-cream text-forest font-sans antialiased selection:bg-terracotta selection:text-white pb-24">
+<body class="font-sans antialiased selection:bg-terracotta selection:text-white pb-24">
 
     <!-- Barra Superior -->
-    <div class="bg-forest text-cream text-[11px] font-medium tracking-wider text-center py-2 px-4 uppercase">
+    <div class="bg-forest text-cream text-[11px] font-medium tracking-wider text-center py-2 px-4 uppercase shadow-inner">
         Um pedacinho do norte na sua manhã <span class="text-terracotta mx-1">✦</span> Feito com carinho em Manaus
     </div>
 
     <!-- Header / Navbar Principal -->
-    <header class="sticky top-0 bg-cream/95 backdrop-blur-md z-40 border-b border-creamDark">
+    <header class="sticky top-0 bg-cream/95 backdrop-blur-md z-40 border-b border-creamDark shadow-sm">
         <div class="max-w-xl mx-auto px-4 py-3.5 flex justify-between items-center">
-            <button onclick="switchTab('inicio')" class="flex items-center gap-3 text-left">
+            <button onclick="switchTab('inicio')" class="flex items-center gap-3 text-left focus:outline-none">
                 <div class="w-10 h-10 rounded-full bg-forest text-cream flex items-center justify-center font-serif font-bold text-lg shadow-sm">
                     N.
                 </div>
@@ -52,11 +80,11 @@
             </button>
             
             <div class="flex items-center gap-2">
-                <button onclick="switchTab('carrinho')" class="flex items-center gap-2 bg-white border border-creamDark hover:border-forest/30 px-3.5 py-2 rounded-xl text-xs font-semibold text-forest shadow-sm transition">
+                <button onclick="switchTab('carrinho')" class="flex items-center gap-2 bg-white border border-creamDark hover:border-forest/30 px-3.5 py-2 rounded-xl text-xs font-semibold text-forest shadow-sm transition active:scale-95">
                     <i class="fa-solid fa-bag-shopping text-terracotta"></i> Meu pedido 
-                    <span id="header-badge" class="bg-terracotta text-white rounded-full w-4 h-4 text-[10px] flex items-center justify-center hidden">0</span>
+                    <span id="header-badge" class="bg-terracotta text-white rounded-full w-4 h-4 text-[10px] flex items-center justify-center hidden transition-all">0</span>
                 </button>
-                <button onclick="toggleMenu()" class="w-10 h-10 bg-white border border-creamDark rounded-xl flex items-center justify-center text-forest shadow-sm hover:border-forest/30">
+                <button onclick="toggleMenu()" class="w-10 h-10 bg-white border border-creamDark rounded-xl flex items-center justify-center text-forest shadow-sm hover:border-forest/30 focus:outline-none">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -64,11 +92,11 @@
 
         <!-- Navegação por Abas Horizontal -->
         <nav class="max-w-xl mx-auto px-4 flex gap-1 border-t border-creamDark overflow-x-auto scrollbar-none text-xs font-serif">
-            <button onclick="switchTab('inicio')" id="nav-inicio" class="nav-tab active-tab py-3 px-3 border-b-2 border-forest font-bold text-forest whitespace-nowrap">Início</button>
-            <button onclick="switchTab('cardapio')" id="nav-cardapio" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap">Cardápio</button>
-            <button onclick="switchTab('sobre')" id="nav-sobre" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap">Nossa História</button>
-            <button onclick="switchTab('local')" id="nav-local" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap">Como Chegar</button>
-            <button onclick="switchTab('carrinho')" id="nav-carrinho" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap">Sacola / Pedido</button>
+            <button onclick="switchTab('inicio')" id="nav-inicio" class="nav-tab active-tab py-3 px-3 border-b-2 border-forest font-bold text-forest whitespace-nowrap transition-colors">Início</button>
+            <button onclick="switchTab('cardapio')" id="nav-cardapio" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap transition-colors">Cardápio</button>
+            <button onclick="switchTab('sobre')" id="nav-sobre" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap transition-colors">Sobre & Horários</button>
+            <button onclick="switchTab('local')" id="nav-local" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap transition-colors">Nossas Unidades</button>
+            <button onclick="switchTab('carrinho')" id="nav-carrinho" class="nav-tab py-3 px-3 border-b-2 border-transparent text-forest/70 hover:text-forest whitespace-nowrap transition-colors">Sacola / Pedido</button>
         </nav>
     </header>
 
@@ -83,8 +111,8 @@
                 <nav class="space-y-4 font-serif text-lg">
                     <button onclick="switchTab('inicio'); toggleMenu();" class="block text-left w-full text-forest hover:text-terracotta transition">Início</button>
                     <button onclick="switchTab('cardapio'); toggleMenu();" class="block text-left w-full text-forest hover:text-terracotta transition">Cardápio</button>
-                    <button onclick="switchTab('sobre'); toggleMenu();" class="block text-left w-full text-forest hover:text-terracotta transition">Nossa história</button>
-                    <button onclick="switchTab('local'); toggleMenu();" class="block text-left w-full text-forest hover:text-terracotta transition">Como chegar</button>
+                    <button onclick="switchTab('sobre'); toggleMenu();" class="block text-left w-full text-forest hover:text-terracotta transition">Sobre & Horários</button>
+                    <button onclick="switchTab('local'); toggleMenu();" class="block text-left w-full text-forest hover:text-terracotta transition">Nossas Unidades</button>
                     <button onclick="switchTab('carrinho'); toggleMenu();" class="block text-left w-full text-terracotta font-bold transition">Meu pedido / Sacola</button>
                 </nav>
             </div>
@@ -111,14 +139,14 @@
                 Café passado na hora, tucumã fresquinho e aquele bom dia que chega com abraço.
             </p>
             <div class="flex flex-wrap items-center gap-4 mb-8">
-                <button onclick="switchTab('cardapio')" class="bg-forest hover:bg-forestDark text-cream font-medium px-6 py-3.5 rounded-xl text-sm shadow-md transition flex items-center gap-2">
+                <button onclick="switchTab('cardapio')" class="bg-forest hover:bg-forestDark text-cream font-medium px-6 py-3.5 rounded-xl text-sm shadow-md transition transform active:scale-95 flex items-center gap-2">
                     Conheça o cardápio <i class="fa-solid fa-arrow-right text-xs"></i>
                 </button>
-                <span class="text-xs text-forest/60">Um café da manhã com sabor de casa</span>
+                <span class="text-xs text-forest/60">Duas unidades em Manaus</span>
             </div>
             <div class="flex items-center gap-2 text-xs text-forest/70 mb-8">
-                <span class="w-2 h-2 rounded-full bg-terracotta inline-block"></span>
-                <span>Horário a confirmar</span> · <span>Manaus, AM</span>
+                <span class="w-2 h-2 rounded-full bg-terracotta inline-block animate-pulse"></span>
+                <span>Aberto hoje até 19:45</span> · <span>Manaus, AM</span>
             </div>
 
             <!-- Imagem Arco -->
@@ -132,7 +160,7 @@
             </div>
 
             <!-- Chamada rápida -->
-            <div class="bg-forest text-cream p-6 rounded-2xl">
+            <div class="bg-forest text-cream p-6 rounded-2xl shadow-md">
                 <span class="text-xs uppercase tracking-widest text-terracotta font-semibold block mb-1">O clássico da casa</span>
                 <h3 class="font-serif text-2xl font-bold mb-2">Da nossa cozinha pra sua mesa.</h3>
                 <p class="text-xs text-cream/80 mb-4">Ingredientes da região, preparo feito na hora e o prazer simples de começar bem o dia.</p>
@@ -159,20 +187,12 @@
 
                 <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
                     <button onclick="filterCategory('todos', event)" class="cat-filter active-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-forest text-cream shadow-sm transition">Todos os sabores</button>
-                    <button onclick="filterCategory('tapiocas', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">01 Tapiocas Tradicionais</button>
-                    <button onclick="filterCategory('sanduiches', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">02 Sanduíches Regionais</button>
-                    <button onclick="filterCategory('bebidas', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">03 Bebidas & Sucos</button>
-                </div>
-            </div>
-
-            <!-- Aviso -->
-            <div class="bg-white border border-creamDark p-4 rounded-xl flex items-start gap-3 mb-6 shadow-sm">
-                <div class="text-terracotta text-base mt-0.5">
-                    <i class="fa-solid fa-circle-info"></i>
-                </div>
-                <div class="text-xs text-forest/80 leading-relaxed">
-                    <strong class="font-bold text-forest block mb-0.5">Valores confirmados</strong>
-                    Outros itens estão sem preço publicado: o valor será confirmado com você pelo WhatsApp, antes de concluir.
+                    <button onclick="filterCategory('tapiocas', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">Tapiocas</button>
+                    <button onclick="filterCategory('sanduiches', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">Sanduíches</button>
+                    <button onclick="filterCategory('bolos', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">Bolos & Doces</button>
+                    <button onclick="filterCategory('cuscuz', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">Cuscuz</button>
+                    <button onclick="filterCategory('farofas', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">Farofas</button>
+                    <button onclick="filterCategory('bebidas', event)" class="cat-filter px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-forest border border-creamDark shadow-sm transition">Bebidas</button>
                 </div>
             </div>
 
@@ -182,79 +202,116 @@
             </div>
         </section>
 
-        <!-- ABA 3: NOSSA HISTÓRIA -->
+        <!-- ABA 3: SOBRE & HORÁRIOS -->
         <section id="tab-sobre" class="tab-content hidden space-y-6">
             <div>
-                <span class="text-xs uppercase tracking-widest text-terracotta font-semibold block mb-2">Um pouco sobre nós</span>
+                <span class="text-xs uppercase tracking-widest text-terracotta font-semibold block mb-2">Sobre Nós & Contato</span>
                 <h2 class="font-serif text-3xl font-bold mb-4 text-forest">
-                    Tem sabor que <span class="text-terracotta font-normal italic">faz a gente ficar.</span>
+                    Tradição e <span class="text-terracotta font-normal italic">sabor regional.</span>
                 </h2>
                 <p class="text-forest/80 text-sm leading-relaxed mb-4">
-                    Na Naíza, a mesa é um convite para aproveitar os sabores regionais e a companhia. Sem pressa, com café quentinho e conversa boa.
+                    Na Naíza, a mesa é um convite para aproveitar os melhores sabores do Amazonas. Venha nos visitar ou peça em casa!
                 </p>
             </div>
 
-            <div class="rounded-2xl overflow-hidden shadow-md bg-creamDark border border-creamDark">
-                <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=600&q=80" alt="Preparo Artesanal" class="w-full h-64 object-cover">
+            <!-- Contato & Redes -->
+            <div class="bg-white p-5 rounded-2xl border border-creamDark shadow-sm space-y-3">
+                <h3 class="font-serif font-bold text-sm text-forest uppercase tracking-wider">Canais Oficiais</h3>
+                <div class="flex items-center gap-3 text-xs text-forest">
+                    <i class="fa-brands fa-instagram text-terracotta text-base"></i>
+                    <a href="https://instagram.com/caferegionalnaiza" target="_blank" class="font-semibold hover:underline">@caferegionalnaiza</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs text-forest">
+                    <i class="fa-brands fa-whatsapp text-terracotta text-base"></i>
+                    <a href="https://wa.me/5592992959638" target="_blank" class="font-semibold hover:underline">(92) 99295-9638</a>
+                </div>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl border border-creamDark shadow-sm">
-                <h3 class="font-serif font-bold text-lg text-forest mb-2">Tradição & Ingredientes Locais</h3>
-                <p class="text-xs text-forest/70 leading-relaxed">
-                    Trabalhamos com tucumã selecionado diariamente, queijo coalho de qualidade e massa de tapioca fina e crocante na chapa.
-                </p>
+            <!-- Horários de Funcionamento -->
+            <div class="bg-white p-5 rounded-2xl border border-creamDark shadow-sm space-y-3">
+                <h3 class="font-serif font-bold text-sm text-forest uppercase tracking-wider mb-2">Horário de Funcionamento</h3>
+                <p class="text-xs text-forest/70 mb-3">Funcionamos todos os dias da semana em dois horários:</p>
+                <div class="space-y-2 text-xs font-semibold text-forest">
+                    <div class="flex justify-between border-b border-creamDark pb-1.5">
+                        <span>Segunda a Domingo</span>
+                        <span class="text-terracotta">06:00 às 11:45 | 14:00 às 19:45</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formas de Pagamento -->
+            <div class="bg-white p-5 rounded-2xl border border-creamDark shadow-sm space-y-3">
+                <h3 class="font-serif font-bold text-sm text-forest uppercase tracking-wider mb-2">Formas de Pagamento</h3>
+                <div class="grid grid-cols-2 gap-2 text-xs text-forest font-medium">
+                    <div class="bg-cream/60 p-2.5 rounded-xl border border-creamDark flex items-center gap-2">
+                        <i class="fa-solid fa-money-bill-wave text-terracotta"></i> Dinheiro
+                    </div>
+                    <div class="bg-cream/60 p-2.5 rounded-xl border border-creamDark flex items-center gap-2">
+                        <i class="fa-solid fa-qrcode text-terracotta"></i> Pix
+                    </div>
+                    <div class="bg-cream/60 p-2.5 rounded-xl border border-creamDark flex items-center gap-2">
+                        <i class="fa-solid fa-credit-card text-terracotta"></i> Cartão de Crédito
+                    </div>
+                    <div class="bg-cream/60 p-2.5 rounded-xl border border-creamDark flex items-center gap-2">
+                        <i class="fa-solid fa-credit-card text-terracotta"></i> Cartão de Débito
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- ABA 4: COMO CHEGAR -->
-        <section id="tab-local" class="tab-content hidden">
-            <span class="text-xs uppercase tracking-widest text-terracotta font-semibold block mb-2">Onde estamos</span>
-            <h2 class="font-serif text-3xl font-bold mb-6 text-forest">Café Regional Naíza</h2>
-            
-            <div class="space-y-4 mb-6">
-                <div class="bg-white p-4 rounded-xl border border-creamDark flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-cream flex items-center justify-center text-terracotta">
-                        <i class="fa-solid fa-location-dot"></i>
+        <!-- ABA 4: NOSSAS UNIDADES -->
+        <section id="tab-local" class="tab-content hidden space-y-6">
+            <div>
+                <span class="text-xs uppercase tracking-widest text-terracotta font-semibold block mb-2">Onde estamos</span>
+                <h2 class="font-serif text-3xl font-bold mb-2 text-forest">Nossas Unidades em Manaus</h2>
+                <p class="text-xs text-forest/70">Escolha a unidade mais próxima de você para retirar seu pedido ou visite nosso espaço.</p>
+            </div>
+
+            <!-- Unidade 1 -->
+            <div class="bg-white p-5 rounded-2xl border border-creamDark shadow-sm space-y-3">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-cream flex items-center justify-center text-terracotta shrink-0 mt-0.5">
+                        <i class="fa-solid fa-store"></i>
                     </div>
                     <div>
-                        <h4 class="font-serif font-bold text-sm text-forest">Manaus, Amazonas</h4>
-                        <p class="text-xs text-forest/70">Endereço de rua ainda precisa ser confirmado.</p>
+                        <span class="text-[10px] uppercase font-bold text-terracotta block">Unidade Principal</span>
+                        <h4 class="font-serif font-bold text-sm text-forest">Parque Laranjeiras</h4>
+                        <p class="text-xs text-forest/80 mt-1">Rua Barão de Jacuí, 58 - Parque Laranjeiras, Manaus - AM</p>
+                        <p class="text-[11px] text-forest/50 mt-0.5">CEP: 69058-120</p>
                     </div>
                 </div>
-
-                <div class="bg-white p-4 rounded-xl border border-creamDark flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-cream flex items-center justify-center text-terracotta">
-                        <i class="fa-solid fa-clock"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-serif font-bold text-sm text-forest">Horário a confirmar</h4>
-                        <p class="text-xs text-forest/70">Fale com a gente para confirmar antes de vir.</p>
-                    </div>
+                <div class="pt-3 border-t border-creamDark flex gap-2">
+                    <a href="https://maps.google.com/?q=Rua+Barao+de+Jacui+58+Manaus" target="_blank" class="bg-forest hover:bg-forestDark text-cream font-medium px-4 py-2 rounded-xl text-xs shadow transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-location-arrow"></i> Ver no Mapa
+                    </a>
                 </div>
             </div>
 
-            <div class="flex flex-wrap gap-3 mb-8">
-                <a href="https://maps.google.com/?q=Manaus" target="_blank" class="bg-forest hover:bg-forestDark text-cream font-medium px-5 py-3 rounded-xl text-xs shadow transition flex items-center gap-2">
-                    <i class="fa-solid fa-location-arrow"></i> Buscar no Google Maps <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </a>
-                <a href="https://wa.me/5592999999999" target="_blank" class="bg-transparent border border-forest/30 text-forest hover:bg-forest/5 font-medium px-5 py-3 rounded-xl text-xs transition flex items-center gap-2">
-                    Chamar no WhatsApp <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </a>
-            </div>
-
-            <!-- Mapa Visual -->
-            <div class="bg-creamDark rounded-2xl overflow-hidden border border-creamDark h-56 relative flex items-center justify-center shadow-inner">
-                <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#1E3A2F_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                <div class="relative text-center">
-                    <div class="w-8 h-8 bg-terracotta text-white rounded-full flex items-center justify-center mx-auto shadow-lg mb-2">
-                        <i class="fa-solid fa-location-dot text-sm"></i>
+            <!-- Unidade 2 -->
+            <div class="bg-white p-5 rounded-2xl border border-creamDark shadow-sm space-y-3">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-cream flex items-center justify-center text-terracotta shrink-0 mt-0.5">
+                        <i class="fa-solid fa-store"></i>
                     </div>
-                    <div class="bg-white px-4 py-2 rounded-xl shadow border border-creamDark text-left">
-                        <span class="text-[10px] uppercase font-bold text-terracotta block">Busca no mapa</span>
-                        <h5 class="font-serif font-bold text-xs text-forest">Café Regional Naíza</h5>
-                        <p class="text-[10px] text-forest/60">Manaus, AM · endereço a confirmar</p>
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-terracotta block">Nova Unidade</span>
+                        <h4 class="font-serif font-bold text-sm text-forest">Av. do Turismo</h4>
+                        <p class="text-xs text-forest/80 mt-1">Av. do Turismo, 30852 - Redenção / Tarumã, Manaus - AM</p>
+                        <p class="text-[11px] text-forest/50 mt-0.5">CEP: 69037-005</p>
                     </div>
                 </div>
+                <div class="pt-3 border-t border-creamDark flex gap-2">
+                    <a href="https://maps.google.com/?q=Av+do+Turismo+30852+Manaus" target="_blank" class="bg-forest hover:bg-forestDark text-cream font-medium px-4 py-2 rounded-xl text-xs shadow transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-location-arrow"></i> Ver no Mapa
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-forest text-cream p-5 rounded-2xl text-center shadow-md">
+                <p class="text-xs mb-3">Dúvidas sobre entregas ou reservas?</p>
+                <a href="https://wa.me/5592992959638" target="_blank" class="inline-flex items-center gap-2 bg-terracotta text-white px-5 py-2.5 rounded-xl text-xs font-semibold hover:opacity-90 transition">
+                    <i class="fa-brands fa-whatsapp"></i> Falar pelo WhatsApp (92) 99295-9638
+                </a>
             </div>
         </section>
 
@@ -262,8 +319,8 @@
         <section id="tab-carrinho" class="tab-content hidden">
             <div class="mb-6">
                 <span class="text-[10px] uppercase tracking-widest text-terracotta font-semibold block mb-1">Seu pedido · Feito com carinho</span>
-                <h2 class="font-serif text-3xl font-bold text-forest mb-2">Só falta combinar.</h2>
-                <p class="text-xs text-forest/70">Revise os sabores, conte como prefere receber e a gente confirma tudo pelo WhatsApp.</p>
+                <h2 class="font-serif text-3xl font-bold text-forest mb-2">Finalizar Pedido</h2>
+                <p class="text-xs text-forest/70">Revise seus itens e informe seu CEP para calcular a entrega por distância.</p>
             </div>
 
             <!-- Seção Sacola -->
@@ -280,15 +337,9 @@
                 </div>
             </div>
 
-            <!-- Observações Gerais -->
-            <div class="mb-6">
-                <label class="block text-xs uppercase tracking-widest text-forest/60 font-semibold mb-2">Observações gerais <span class="text-forest/40 lowercase">opcional</span></label>
-                <textarea id="general-obs" placeholder="Algum detalhe que devemos saber?" rows="3" class="w-full p-3 bg-white border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta transition shadow-sm resize-none"></textarea>
-            </div>
-
             <!-- Form WhatsApp -->
             <div class="bg-white p-5 rounded-2xl border border-creamDark space-y-4 mb-6 shadow-sm">
-                <h4 class="font-serif font-bold text-sm text-forest uppercase tracking-wider">Dados para o WhatsApp</h4>
+                <h4 class="font-serif font-bold text-sm text-forest uppercase tracking-wider">Dados da Entrega</h4>
                 
                 <div>
                     <label class="block text-xs font-semibold text-forest mb-1">Seu Nome *</label>
@@ -299,32 +350,67 @@
                     <label class="block text-xs font-semibold text-forest mb-1">Opção de Consumo *</label>
                     <select id="consumption-type" onchange="toggleCartFields()" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
                         <option value="Delivery">Delivery (Entrega em casa)</option>
-                        <option value="Retirada no Local">Retirada no Local</option>
-                        <option value="Na Mesa">Na Mesa</option>
+                        <option value="Retirada no Local">Retirada no Local (Parque Laranjeiras ou Av. do Turismo)</option>
                     </select>
                 </div>
 
-                <div id="field-address">
-                    <label class="block text-xs font-semibold text-forest mb-1">Endereço Completo (com Bairro) *</label>
-                    <input type="text" id="client-address" placeholder="Ex: Rua Leopoldina, 123 - Adrianópolis" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
-                </div>
+                <!-- Campo de CEP e Cálculo por Distância -->
+                <div id="field-address" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-forest mb-1">CEP de Entrega (Manaus) *</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="client-cep" maxlength="9" placeholder="Ex: 69058-120" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
+                            <button id="btn-calc-freight" onclick="calculateFreightByDistance()" type="button" class="bg-forest text-cream text-xs font-semibold px-4 py-3 rounded-xl hover:bg-forestDark transition flex items-center gap-1.5 whitespace-nowrap">
+                                <span>Calcular Frete</span>
+                            </button>
+                        </div>
+                        <p id="cep-status" class="text-[11px] text-forest/60 mt-1.5 hidden"></p>
+                    </div>
 
-                <div id="field-table" class="hidden">
-                    <label class="block text-xs font-semibold text-forest mb-1">Número da Mesa *</label>
-                    <input type="number" id="client-table" placeholder="Ex: 05" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
+                    <div>
+                        <label class="block text-xs font-semibold text-forest mb-1">Endereço Completo & Número *</label>
+                        <input type="text" id="client-address" placeholder="Ex: Rua Leopoldina, nº 123" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-forest mb-1">Bairro *</label>
+                        <input type="text" id="client-bairro" placeholder="Ex: Adrianópolis" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
+                    </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-semibold text-forest mb-1">Forma de Pagamento *</label>
                     <select id="payment-method" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta">
                         <option value="Pix">Pix</option>
-                        <option value="Cartão de Crédito/Débito">Cartão de Crédito / Débito</option>
-                        <option value="Dinheiro">Dinheiro (Levar troco)</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Cartão de Crédito">Cartão de Crédito</option>
+                        <option value="Cartão de Débito">Cartão de Débito</option>
                     </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-forest mb-1">Observações <span class="text-forest/40 font-normal">opcional</span></label>
+                    <textarea id="general-obs" placeholder="Ex: Ponto de referência, troco para R$ 50, etc." rows="2" class="w-full p-3 bg-cream/50 border border-creamDark rounded-xl text-xs outline-none focus:border-terracotta resize-none"></textarea>
+                </div>
+
+                <!-- Resumo de Valores -->
+                <div class="border-t border-creamDark pt-3 space-y-1.5 text-xs text-forest">
+                    <div class="flex justify-between">
+                        <span>Subtotal itens:</span>
+                        <span id="summary-subtotal" class="font-semibold">R$ 0,00</span>
+                    </div>
+                    <div class="flex justify-between text-terracotta">
+                        <span>Frete (baseado na distância):</span>
+                        <span id="summary-freight" class="font-semibold">R$ 0,00</span>
+                    </div>
+                    <div class="flex justify-between font-bold text-sm text-forest border-t border-creamDark pt-2 mt-1">
+                        <span>Total do Pedido:</span>
+                        <span id="summary-total" class="text-terracotta">R$ 0,00</span>
+                    </div>
                 </div>
             </div>
 
-            <button onclick="sendWhatsAppOrder()" class="w-full bg-forest hover:bg-forestDark text-cream font-medium py-4 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 transition text-sm">
+            <button onclick="sendWhatsAppOrder()" class="w-full bg-forest hover:bg-forestDark text-cream font-medium py-4 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 transition text-sm transform active:scale-95">
                 <i class="fa-brands fa-whatsapp text-lg text-terracotta"></i> Enviar Pedido via WhatsApp
             </button>
         </section>
@@ -332,7 +418,7 @@
     </main>
 
     <!-- Rodapé Fixo -->
-    <footer class="bg-forest text-cream pt-8 pb-8 px-4 border-t border-forestDark mt-12">
+    <footer class="bg-forest text-cream pt-8 pb-8 px-4 border-t border-forestDark mt-12 shadow-inner">
         <div class="max-w-xl mx-auto text-center">
             <div class="w-8 h-8 rounded-full bg-terracotta text-white flex items-center justify-center font-serif font-bold text-sm mx-auto mb-2">
                 N.
@@ -342,72 +428,30 @@
         </div>
     </footer>
 
-    <!-- Lógica JavaScript -->
+    <!-- Lógica JavaScript Unificada -->
     <script>
-        // Cardápio sem opções de tamanhos
+        // Coordenadas da Loja Principal (Parque Laranjeiras - Manaus)
+        const STORE_LAT = -3.0851;
+        const STORE_LON = -60.0152;
+
         const products = [
-            {
-                id: 1,
-                name: "Tapioca com Manteiga",
-                description: "Tapioca tradicional feita na chapa, na hora.",
-                price: 15.00,
-                category: "tapiocas",
-                image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=400&q=80"
-            },
-            {
-                id: 2,
-                name: "Tapioca de Castanha",
-                description: "Tapioca crocante com recheio especial de castanha.",
-                price: 34.00,
-                category: "tapiocas",
-                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80"
-            },
-            {
-                id: 3,
-                name: "Tapioca com Ovos",
-                description: "Tapioca na chapa com ovos caipiras bem temperados.",
-                price: 24.00,
-                category: "tapiocas",
-                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80"
-            },
-            {
-                id: 4,
-                name: "X-Caboquinho Tradicional",
-                description: "Pão francês, tucumã fresquinho, queijo coalho e banana frita.",
-                price: 14.00,
-                category: "sanduiches",
-                image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80"
-            },
-            {
-                id: 5,
-                name: "Sanduíche de Tucumã com Mortadela",
-                description: "Pão francês, tucumã e fatias de mortadela.",
-                price: 10.00,
-                category: "sanduiches",
-                image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&q=80"
-            },
-            {
-                id: 6,
-                name: "Café com Leite Regional",
-                description: "Café coado na hora com leite quente.",
-                price: 5.00,
-                category: "bebidas",
-                image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&q=80"
-            },
-            {
-                id: 7,
-                name: "Suco de Cupuaçu",
-                description: "Polpa natural de fruta regional batida na hora.",
-                price: 8.00,
-                category: "bebidas",
-                image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=400&q=80"
-            }
+            { id: 1, name: "Bolo de Macaxeira com Doce de Cupuaçu", description: "Bolo regional de macaxeira coberto com doce cremoso de cupuaçu e castanha.", price: 30.00, category: "bolos", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80", esgotado: false, tag: "RECOMENDADO" },
+            { id: 2, name: "Pé de Moleque", description: "Tradicional pé de moleque amazonense assado na folha de bananeira.", price: 15.00, category: "bolos", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80", esgotado: false, tag: "" },
+            { id: 3, name: "Bolo de Milho", description: "Bolo cremoso de milho verde quentinho.", price: 20.00, category: "bolos", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80", esgotado: true, tag: "" },
+            { id: 4, name: "Crepioca com Carne de Sol e Queijo", description: "Massa leve de tapioca com ovos recheada com carne de sol suculenta e queijo cremoso.", price: 42.00, category: "tapiocas", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80", esgotado: false, tag: "MAIS PEDIDO" },
+            { id: 5, name: "Cuscuz com Queijo e Carne de Sol", description: "Cuscuz nordestino fofinho coroado com carne de sol e queijo derretido.", price: 30.00, category: "cuscuz", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80", esgotado: false, tag: "MAIS PEDIDO" },
+            { id: 6, name: "Tapioca de Manteiga", description: "Tapioca tradicional fina e crocante na chapa com manteiga.", price: 15.00, category: "tapiocas", image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=400&q=80", esgotado: false, tag: "" },
+            { id: 7, name: "X-Caboquinho Tradicional", description: "Pão francês, tucumã fresquinho, queijo coalho e banana frita.", price: 14.00, category: "sanduiches", image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80", esgotado: false, tag: "" },
+            { id: 8, name: "Farofa de Jabá", description: "Farofa artesanal bem temperada com carne de jabá desfiada.", price: 26.00, category: "farofas", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80", esgotado: false, tag: "MAIS PEDIDO" },
+            { id: 9, name: "Café com Leite Regional", description: "Café coado na hora com leite quente.", price: 5.00, category: "bebidas", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&q=80", esgotado: false, tag: "" },
+            { id: 10, name: "Suco de Cupuaçu", description: "Polpa natural de fruta regional batida na hora.", price: 8.00, category: "bebidas", image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=400&q=80", esgotado: false, tag: "" }
         ];
 
         let cart = [];
         let activeCategory = 'todos';
+        let freightCost = 0;
+        let calculatedDistanceKm = 0;
 
-        // Sistema de Troca de Abas
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
             document.querySelectorAll('.nav-tab').forEach(btn => {
@@ -431,7 +475,6 @@
             }
         }
 
-        // Renderizar Produtos no Cardápio
         function renderProducts(filterText = '') {
             const container = document.getElementById('product-grid');
             if (!container) return;
@@ -450,9 +493,17 @@
 
             filtered.forEach(p => {
                 const card = document.createElement('div');
-                card.className = 'bg-white rounded-2xl overflow-hidden border border-creamDark shadow-sm flex flex-col sm:flex-row';
+                card.className = `bg-white rounded-2xl overflow-hidden border border-creamDark shadow-sm flex flex-col sm:flex-row relative ${p.esgotado ? 'opacity-60 grayscale-[30%]' : ''}`;
                 
+                let badgeHtml = '';
+                if (p.esgotado) {
+                    badgeHtml = `<div class="absolute top-0 right-0 bg-red-700 text-white text-[10px] font-bold px-4 py-1 rotate-45 translate-x-3 translate-y-2 shadow-sm tracking-widest uppercase pointer-events-none z-10">Esgotado</div>`;
+                } else if (p.tag) {
+                    badgeHtml = `<span class="absolute top-3 right-3 bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">${p.tag}</span>`;
+                }
+
                 card.innerHTML = `
+                    ${badgeHtml}
                     <img src="${p.image}" alt="${p.name}" class="w-full sm:w-36 h-36 object-cover">
                     <div class="p-4 flex-1 flex flex-col justify-between">
                         <div>
@@ -461,10 +512,11 @@
                             <p class="text-xs text-forest/70 mb-3">${p.description}</p>
                         </div>
                         <div class="pt-2 border-t border-creamDark flex justify-between items-center">
-                            <span class="text-[11px] text-forest/50">Serve 1 pessoa</span>
-                            <button onclick="addToCart(${p.id})" class="bg-forest hover:bg-forestDark text-cream text-xs font-semibold px-4 py-2 rounded-xl shadow transition flex items-center gap-1.5">
-                                <i class="fa-solid fa-plus text-[10px]"></i> Adicionar
-                            </button>
+                            <span class="text-[11px] text-forest/50">${p.esgotado ? 'Indisponível' : 'Serve 1 pessoa'}</span>
+                            ${p.esgotado 
+                                ? `<button disabled class="bg-gray-200 text-gray-400 text-xs font-semibold px-4 py-2 rounded-xl cursor-not-allowed">Esgotado</button>`
+                                : `<button onclick="addToCart(${p.id})" class="bg-forest hover:bg-forestDark text-cream text-xs font-semibold px-4 py-2 rounded-xl shadow transition active:scale-95 flex items-center gap-1.5"><i class="fa-solid fa-plus text-[10px]"></i> Adicionar</button>`
+                            }
                         </div>
                     </div>
                 `;
@@ -487,9 +539,10 @@
             renderProducts(document.getElementById('search-input').value);
         }
 
-        // Funções da Sacola
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
+            if(product.esgotado) return;
+            
             const existing = cart.find(item => item.id === productId);
 
             if (existing) {
@@ -499,6 +552,9 @@
             }
 
             updateCartBadge();
+            const badge = document.getElementById('header-badge');
+            badge.classList.add('scale-125');
+            setTimeout(() => badge.classList.remove('scale-125'), 200);
         }
 
         function updateCartBadge() {
@@ -534,24 +590,25 @@
 
             if (cart.length === 0) {
                 container.innerHTML = `
-                    <div class="bg-white p-6 rounded-2xl border border-creamDark text-center">
+                    <div class="bg-white p-6 rounded-2xl border border-creamDark text-center shadow-sm">
                         <div class="w-12 h-12 bg-cream rounded-full flex items-center justify-center mx-auto text-terracotta mb-3">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </div>
                         <h4 class="font-serif font-bold text-forest text-base mb-1">A sacola está esperando.</h4>
-                        <p class="text-xs text-forest/70 mb-4">Escolha uma tapioca, um café ou outro sabor regional pra começar.</p>
+                        <p class="text-xs text-forest/70 mb-4">Escolha uma tapioca, um bolo ou outro sabor regional pra começar.</p>
                         <button onclick="switchTab('cardapio')" class="bg-forest text-cream font-medium px-5 py-2.5 rounded-xl text-xs shadow hover:bg-forestDark transition">
                             Ver cardápio →
                         </button>
                     </div>
                 `;
+                updateSummary();
                 return;
             }
 
             container.innerHTML = '';
             cart.forEach(item => {
                 const div = document.createElement('div');
-                div.className = 'bg-white p-3.5 rounded-xl border border-creamDark flex justify-between items-center';
+                div.className = 'bg-white p-3.5 rounded-xl border border-creamDark flex justify-between items-center shadow-sm';
                 div.innerHTML = `
                     <div>
                         <h5 class="font-serif font-bold text-xs text-forest">${item.name}</h5>
@@ -565,23 +622,108 @@
                 `;
                 container.appendChild(div);
             });
+
+            updateSummary();
+        }
+
+        // Fórmula Haversine para Distância em KM
+        function getHaversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // Cálculo de Frete Dinâmico via CEP
+        async function calculateFreightByDistance() {
+            const cepInput = document.getElementById('client-cep').value.replace(/\D/g, '');
+            const statusEl = document.getElementById('cep-status');
+            const calcBtn = document.getElementById('btn-calc-freight');
+
+            if (cepInput.length !== 8) {
+                statusEl.textContent = 'Digite um CEP válido com 8 dígitos.';
+                statusEl.className = 'text-[11px] text-red-600 mt-1.5 block';
+                return;
+            }
+
+            statusEl.textContent = 'Buscando endereço e calculando distância...';
+            statusEl.className = 'text-[11px] text-forest/70 mt-1.5 block';
+            calcBtn.disabled = true;
+
+            try {
+                const response = await fetch(`https://viacep.com.br/ws/${cepInput}/json/`);
+                const data = await response.json();
+
+                if (data.erro) {
+                    statusEl.textContent = 'CEP não encontrado.';
+                    statusEl.className = 'text-[11px] text-red-600 mt-1.5 block';
+                    freightCost = 0;
+                    calculatedDistanceKm = 0;
+                } else {
+                    document.getElementById('client-address').value = data.logradouro || '';
+                    document.getElementById('client-bairro').value = data.bairro || '';
+
+                    const searchQuery = encodeURIComponent(`${data.logradouro || ''}, ${data.bairro}, Manaus, AM, Brasil`);
+                    const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}`);
+                    const geoData = await geoResponse.json();
+
+                    if (geoData && geoData.length > 0) {
+                        const destLat = parseFloat(geoData[0].lat);
+                        const destLon = parseFloat(geoData[0].lon);
+
+                        calculatedDistanceKm = getHaversineDistance(STORE_LAT, STORE_LON, destLat, destLon);
+                        
+                        const baseFee = 5.00;
+                        const perKmFee = 1.50;
+                        freightCost = baseFee + (calculatedDistanceKm * perKmFee);
+
+                        statusEl.textContent = `Bairro: ${data.bairro} (${calculatedDistanceKm.toFixed(1)} km) · Frete: R$ ${freightCost.toFixed(2).replace('.', ',')}`;
+                        statusEl.className = 'text-[11px] text-green-700 font-semibold mt-1.5 block';
+                    } else {
+                        freightCost = 9.00;
+                        statusEl.textContent = `Bairro: ${data.bairro} · Taxa Estimada: R$ ${freightCost.toFixed(2).replace('.', ',')}`;
+                        statusEl.className = 'text-[11px] text-green-700 font-semibold mt-1.5 block';
+                    }
+                }
+            } catch (err) {
+                statusEl.textContent = 'Erro ao consultar o CEP. Digite seu endereço manualmente.';
+                statusEl.className = 'text-[11px] text-red-600 mt-1.5 block';
+                freightCost = 8.00;
+            } finally {
+                calcBtn.disabled = false;
+                updateSummary();
+            }
+        }
+
+        function updateSummary() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const consumption = document.getElementById('consumption-type') ? document.getElementById('consumption-type').value : 'Delivery';
+            
+            const currentFreight = (consumption === 'Retirada no Local') ? 0 : freightCost;
+            const total = subtotal + currentFreight;
+
+            if(document.getElementById('summary-subtotal')) {
+                document.getElementById('summary-subtotal').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+                document.getElementById('summary-freight').textContent = `R$ ${currentFreight.toFixed(2).replace('.', ',')}`;
+                document.getElementById('summary-total').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            }
         }
 
         function toggleCartFields() {
             const type = document.getElementById('consumption-type').value;
             const addressField = document.getElementById('field-address');
-            const tableField = document.getElementById('field-table');
 
-            if (type === 'Na Mesa') {
+            if (type === 'Retirada no Local') {
                 addressField.classList.add('hidden');
-                tableField.classList.remove('hidden');
-            } else if (type === 'Retirada no Local') {
-                addressField.classList.add('hidden');
-                tableField.classList.add('hidden');
             } else {
                 addressField.classList.remove('hidden');
-                tableField.classList.add('hidden');
             }
+            updateSummary();
         }
 
         function toggleMenu() {
@@ -596,8 +738,9 @@
 
             const name = document.getElementById('client-name').value.trim();
             const consumption = document.getElementById('consumption-type').value;
+            const cep = document.getElementById('client-cep').value.trim();
             const address = document.getElementById('client-address').value.trim();
-            const table = document.getElementById('client-table').value.trim();
+            const bairro = document.getElementById('client-bairro').value.trim();
             const payment = document.getElementById('payment-method').value;
             const obs = document.getElementById('general-obs').value.trim();
 
@@ -607,25 +750,17 @@
                 return;
             }
 
-            if (consumption === 'Delivery' && !address) {
-                alert('Por favor, informe o endereço de entrega.');
-                document.getElementById('client-address').focus();
+            if (consumption === 'Delivery' && (!address || !bairro)) {
+                alert('Por favor, informe o CEP e o endereço completo com bairro.');
                 return;
             }
 
-            if (consumption === 'Na Mesa' && !table) {
-                alert('Por favor, informe o número da mesa.');
-                document.getElementById('client-table').focus();
-                return;
-            }
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const currentFreight = (consumption === 'Retirada no Local') ? 0 : freightCost;
+            const total = subtotal + currentFreight;
 
-            let itemsText = cart.map(i => `• ${i.quantity}x ${i.name}`).join('\n');
+            let itemsText = cart.map(i => `• ${i.quantity}x ${i.name} (R$ ${(i.price * i.quantity).toFixed(2).replace('.', ',')})`).join('\n');
             
-            let locationInfo = '';
-            if (consumption === 'Delivery') locationInfo = `- Endereço: ${address}`;
-            else if (consumption === 'Na Mesa') locationInfo = `- Mesa: ${table}`;
-            else locationInfo = `- Tipo: Retirada no Local`;
-
             let message = `Olá, gostaria de fazer um pedido no Café Regional Naíza! ☕🫓\n\n` +
                           `📋 *ITENS DO PEDIDO:*\n${itemsText}\n\n`;
 
@@ -635,12 +770,23 @@
 
             message += `📍 *DADOS DE ENTREGA / CONSUMO:*\n` +
                        `- Cliente: ${name}\n` +
-                       `- Tipo: ${consumption}\n` +
-                       `${locationInfo}\n` +
-                       `- Forma de Pagamento: ${payment}\n\n` +
-                       `Aguardando a confirmação do valor total e do tempo estimado. Obrigado!`;
+                       `- Tipo: ${consumption}\n`;
 
-            const phone = "5592994345070";
+            if (consumption === 'Delivery') {
+                message += `- CEP: ${cep}\n` +
+                           `- Endereço: ${address}\n` +
+                           `- Bairro: ${bairro}\n` +
+                           `- Distância estimada: ${calculatedDistanceKm > 0 ? calculatedDistanceKm.toFixed(1) + ' km' : 'Não calculada'}\n`;
+            }
+
+            message += `- Forma de Pagamento: ${payment}\n\n` +
+                       `💰 *RESUMO DE VALORES:*\n` +
+                       `- Subtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}\n` +
+                       `- Taxa de Frete: R$ ${currentFreight.toFixed(2).replace('.', ',')}\n` +
+                       `- *TOTAL DO PEDIDO: R$ ${total.toFixed(2).replace('.', ',')}*\n\n` +
+                       `Aguardando confirmação. Obrigado!`;
+
+            const phone = "5592992959638";
             const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
